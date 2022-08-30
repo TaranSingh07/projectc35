@@ -17,6 +17,7 @@ var con;
 var con2;
 var rope;
 var bubble,bubble_img;
+var button
 
 function preload()
 {
@@ -29,6 +30,7 @@ function preload()
   eat = loadAnimation("eat_0.png" , "eat_1.png","eat_2.png","eat_3.png","eat_4.png");
   sad = loadAnimation("sad_1.png","sad_2.png","sad_3.png");
   star_img = loadImage('star.png');
+  
   
   blink.playing = true;
   eat.playing = true;
@@ -83,6 +85,9 @@ function setup() {
   button2.size(50,50);
 
  // write a correct block of code to add button to cut the rope 
+ button2.mouseClicked(drop)
+  
+
 
   ellipseMode(RADIUS);
 }
@@ -105,13 +110,14 @@ function draw()
   rope.show();
   rope2.show();
 
-  if(collide(fruit,bunny,80)==true)
+  if(collide(fruit,bunny,100)==true)
   {
    remove_rope();
    bubble.visible = false;
     World.remove(engine.world,fruit);
     fruit = null;
    //Code to change the animation of a bunny when a collision with fruit and bunny is detected. 
+    bunny.changeAnimation("eating",eat);
   }
   
   if(collide(fruit,bubble,40) == true)
@@ -155,3 +161,6 @@ function collide(body,sprite,x)
          }
 }
 
+
+  
+ 
